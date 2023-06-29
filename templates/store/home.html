@@ -1,0 +1,51 @@
+{% extends "./base.html" %}
+{% load static %} 
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <section class="mb-4">
+            <div style="overflow: hidden;">
+                <img src="{% static 'store/images/home-image.jpg' %}" class="img-fluid home-image" alt="">
+            </div>
+            <div class="p-4 p-md-5 mb-4 text-dark rounded-bottom home-image-bar">
+                <div class="d-flex justify-content-around">
+                    <div class="text-center">
+                        <h3 style="font-size: 1.5rem" class="display-6 fst-italic fw-normal">Купи брзо</h1>
+                        <p class="my-3 fw-light">Купи веднаш со само еден клик!</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 style="font-size: 1.5rem" class="display-6 fst-italic fw-normal">Купи брзо</h1>
+                        <p class="my-3 fw-light">Купи веднаш со само еден клик!</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 style="font-size: 1.5rem" class="display-6 fst-italic fw-normal">Купи брзо</h1>
+                        <p class="my-3 fw-light">Купи веднаш со само еден клик!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="margin-top-50 margin-bottom-50">
+            <div class="d-flex justify-content-center margin-bottom-50">
+                <h1 class="display-6">Нова роба</h1>
+            </div>
+            <div>
+                <div class="row">
+                    {% for category in categories_new_arrival %}
+                    <div class="col-3">
+                        <div class="card h-100">
+                            <div class="h-60">
+                                <img src="{{ category.image.url }}" class="card-img-top img-fluid" alt="Category Image">
+                            </div>
+                            <div class="card-body d-flex flex-column align-items-center">
+                              <h5 class="card-title mb-3">{{ category.name }}</h5>
+                              <a href="{{ category.get_absolute_url }}" class="btn rounded border border-dark py-2 w-50"> Купи сега</a>
+                            </div>
+                          </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
