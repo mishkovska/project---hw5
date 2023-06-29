@@ -1,11 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 
-def categories(request):
-    return {
-        'categories_in_menu': Category.objects.filter(is_displayed_in_menu=True)
-    }
-
 def home(request):
     categories_new_arrival = Category.objects.filter(is_new_arrival=True)
 
@@ -28,7 +23,7 @@ def category_list(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     descendants = category.get_descendants(include_self=True)
 
-    products = Product.objects.filter(category__in=descendants)
+    products = Product.products.filter(category__in=descendants)
 
     root = category.get_root()
     if root.has_phone_type:
