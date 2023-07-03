@@ -65,7 +65,7 @@
                                   <h5 class="card-title mb-2">{{ product.title }}</h5>
                                   <p style="font-size: 0.85rem" class="card-text mb-2"><span class="fw-light">{{ product.category.name }}</span></p>
                                   <p class="card-text fw-bold mb-2">{{ product.price }}</p>
-                                  <a href="#" class="btn btn-sm btn btn-primary py-2">Додади во кошничка</a>
+                                  <a data-index="{{ product.id }}" href="{% url "store_basket:basket_summary" %}" class="btn btn-sm btn btn-primary py-2 update-add-by-one-button">Додади во кошничка</a>
                                 </div>
                               </div>
                         </div>
@@ -75,6 +75,27 @@
             </div>
         </div>
     </main>
+
+    <script>
+        $(document).on('click', '.update-add-by-one-button', function (e) {
+            var prodid = $(this).data('index');
+            $.ajax({
+                type: 'POST',
+                url: '{% url "store_basket:basket_add" %}',
+                data: {
+                    productid: $(this).data('index'),
+                    productqty: 1,
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.log(json.qty)
+                  document.getElementById("basket-qty").innerHTML = json.qty
+                },
+                error: function (xhr, errmsg, err) {}
+            });
+        })
+    </script>
 {% endblock %}
 
 {% block scripts %}
