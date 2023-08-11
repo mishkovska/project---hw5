@@ -5,16 +5,16 @@
   <main class="container">
     <div style="margin-bottom: 32px" class="margin-top-50 mx-4">
       <div class="d-flex mb-4">
-        <h2>Твојата кошничка</h2>
+        <h2>Your Basket</h2>
       </div>
       <div class="row">
         <div class="col-8">
           <table class="table table-borderless">
             <thead>
               <tr class="border-bottom">
-                <th class="ps-0 py-3 text-muted col-7">Продукт</th>
-                <th class="py-3 text-muted text-center col">Количина</th>
-                <th class="py-3 pe-0 text-muted text-end col">Вкупно</th>
+                <th class="ps-0 py-3 text-muted col-7">Product</th>
+                <th class="py-3 text-muted text-center col">Quantity</th>
+                <th class="py-3 pe-0 text-muted text-end col">Total</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                       <h5 style="margin-bottom: 4px">{{ product.title }}</h5>
                       <p style="font-size: 0.85rem" class="fw-light">{{ product.category.name }}</p>
                       <div class="mt-auto">
-                        <p class="mb-0">{{ product.price }} ден.</p>
+                        <p class="mb-0">{{ product.price }} $</p>
                       </div>
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                       <button data-index="{{ product.id }}" class="input-group-text update-add-by-one-button"><svg class="bi bi-plus" width="16" height="16"><use xlink:href="#plus"/></svg></button>
                     </div>
                     <div class="mt-3">
-                      <p data-index="{{ product.id }}" style="font-size: 0.85rem; text-decoration: underline; cursor: pointer;" class="text-secondary delete-from-basket-button">Избриши</p>
+                      <p data-index="{{ product.id }}" style="font-size: 0.85rem; text-decoration: underline; cursor: pointer;" class="text-secondary delete-from-basket-button">Delete</p>
                     </div>
                   </div>
                 </td>
@@ -51,7 +51,7 @@
                   <div class="d-flex justify-content-end">
                     <p style="font-size: 0.95rem" class="mb-0 pt-2 text-end fw-bold w-50">
                       <span id="product-price{{ product.id }}">{{ item.total_price }}</span>
-                      <span>ден.</span>
+                      <span>$</span>
                     </p>
                   </div>
                 </td>
@@ -66,15 +66,15 @@
         <div class="col-3">
           <div class="sticky-top">
             <div style="padding: 13.4px 0px" class="border-bottom">
-                <h4 class="mb-0">Под вкупно</h4>
+                <h4 class="mb-0">Sub Total</h4>
             </div>
             <div>
               <div class="border-bottom pb-4 mt-4">
                 <div class="d-flex align-items-center">
-                  <h6 class="fw-normal mb-0 flex-grow-1">Цена на производи</h6>
+                  <h6 class="fw-normal mb-0 flex-grow-1">Price of products</h6>
                   <div style="font-size: 0.95rem">
                     <span id="subtotal">{{ basket.get_total_price }}</span>
-                    <span>ден.</span>
+                    <span>$</span>
                   </div>
                 </div>
               </div>
