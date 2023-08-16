@@ -57,10 +57,11 @@
         
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center align-items-center mb-md-0 ms-md-auto">
                 {% if user.is_authenticated %}
+                <li><a href="{% url "account:dashboard" %}" class="nav-link px-3 link-secondary">Account</a></li>
                 <li><a href="{% url "account:logout" %}" class="nav-link px-3 link-secondary">Logout</a></li>
                 {% else %}
                 <li><a href="{% url "account:register" %}" class="nav-link px-3 link-secondary">Register</a></li>
-                <li><a href="{% url "account:login" %}" class="nav-link px-3 link-secondary">Log in</a></li>
+                <li><a href="{% url "account:login" %}" class="nav-link px-3 link-secondary">Login</a></li>
                 {% endif %}
                 <li><a class="text-muted ps-3 position-relative" href="{% url "store_basket:basket_summary" %}">
                     <svg class="bi" width="24" height="24"><use xlink:href="#basket"/></svg>

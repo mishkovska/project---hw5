@@ -5,7 +5,7 @@
   <main class="container">
     <div style="margin-bottom: 32px" class="margin-top-50 mx-4">
       <div class="d-flex mb-4">
-        <h2>Your Basket</h2>
+        <h2>Your Cart</h2>
       </div>
       <div class="row">
         <div class="col-8">
@@ -30,7 +30,7 @@
                       <h5 style="margin-bottom: 4px">{{ product.title }}</h5>
                       <p style="font-size: 0.85rem" class="fw-light">{{ product.category.name }}</p>
                       <div class="mt-auto">
-                        <p class="mb-0">{{ product.price }} $</p>
+                        <p class="mb-0">{{ product.price }} €</p>
                       </div>
                     </div>
                   </div>
@@ -49,9 +49,9 @@
                 </td>
                 <td style="padding-top: 32px;" class="pb-0 pe-0 col">
                   <div class="d-flex justify-content-end">
-                    <p style="font-size: 0.95rem" class="mb-0 pt-2 text-end fw-bold w-50">
+                    <p style="font-size: 0.95rem" class="mb-0 pt-2 text-end fw-bold w-100">
                       <span id="product-price{{ product.id }}">{{ item.total_price }}</span>
-                      <span>$</span>
+                      <span>€</span>
                     </p>
                   </div>
                 </td>
@@ -74,10 +74,13 @@
                   <h6 class="fw-normal mb-0 flex-grow-1">Price of products</h6>
                   <div style="font-size: 0.95rem">
                     <span id="subtotal">{{ basket.get_total_price }}</span>
-                    <span>$</span>
+                    <span>€</span>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="mt-4">
+              <a role="button" href="{% url 'payment:basket' %}" class="btn btn-primary fw-bold w-100" type="button">Checkout</a>
             </div>
           </div>
         </div>
