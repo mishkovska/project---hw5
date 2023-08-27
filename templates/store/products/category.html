@@ -57,15 +57,28 @@
                         <div class="col-4">
                             <div class="card h-100">
                                 <div class="h-60">
+                                    {% if user.is_superuser %}
+                                    <a href="">
+                                        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
+                                    </a>
+                                    {% else %}
                                     <a href="{{ product.get_absolute_url }}">
                                         <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="Product Image">
                                     </a>
+                                    {% endif %}
                                 </div>
                                 <div class="card-body d-flex flex-column align-items-center">
                                   <h5 class="card-title mb-2">{{ product.title }}</h5>
                                   <p class="card-text mb-2 small text-muted">{{ product.category.name }}</p>
                                   <p class="card-text fw-bold mb-3">{{ product.price }} €</p>
+                                  {% if user.is_superuser %}
+                                  <div>
+                                    <a href="" class="pe-2 link-primary fw-bold">Edit</a>
+                                    <a href="" class="ps-2 link-danger fw-bold">Delete</a>
+                                  </div>
+                                  {% else %}
                                   <a data-index="{{ product.id }}" href="{% url "store_basket:basket_summary" %}" class="mb-2 btn btn-primary w-50 update-add-by-one-button">Add To Cart</a>
+                                  {% endif %}
                                 </div>
                               </div>
                         </div>

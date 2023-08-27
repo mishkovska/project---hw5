@@ -1,5 +1,27 @@
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import get_object_or_404, render, redirect
+
 from .models import Category, Product
+from .forms import AddProductForm
+
+
+def is_superuser(user):
+    return user.is_superuser
+
+@user_passes_test(is_superuser)
+def add_product(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            user = request.user
+            product.created_by = user
+            product.save()
+            return redirect(product.category.get_absolute_url())
+    else:
+        form = AddProductForm()
+    
+    return render(request, 'store/add-product.html', {'form': form})
 
 def home(request):
     categories_new_arrival = Category.objects.filter(is_new_arrival=True)

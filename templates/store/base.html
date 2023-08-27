@@ -63,6 +63,9 @@
                 <li><a href="{% url "account:register" %}" class="nav-link px-3 link-secondary">Register</a></li>
                 <li><a href="{% url "account:login" %}" class="nav-link px-3 link-secondary">Login</a></li>
                 {% endif %}
+                {% if user.is_superuser %}
+                <li><a href="{% url "store:add_product" %}" class="btn btn-primary">Add new product</a></li>
+                {% else %}
                 <li><a class="text-muted ps-3 position-relative" href="{% url "store_basket:basket_summary" %}">
                     <svg class="bi" width="24" height="24"><use xlink:href="#basket"/></svg>
                     {% with total_qty=basket|length %}
@@ -75,6 +78,7 @@
                     </span>
                     {% endwith %}
                 </a></li>
+                {% endif %}
             </ul>
         </div>
         <div id="categories" class="px-3 py-3 border-bottom mb-3">
