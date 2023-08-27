@@ -8,9 +8,12 @@ from store.models import Product
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order_user')
 
-    # The data below may seem like a duplicate since the order will be tied to a user from the user table that has this data already
-    # The billing address may not be the same as the user's address. What if the user wants to order something for someone
-    # rather than himself. 
+    # The data below may seem like a duplicate since the order will be tied to a user from the user table that may have this data already
+    # A billing address is an address associated with your credit or debit card account. In my system it is assumed that
+    # the billing address and the delivery are the same. So I store this "duplicate" data, because I may have an account, but decide to pay
+    # with my father's debit card, and I would need to enter my father's debit card data (his name, his address, etc.)
+    # The system can be further developed where the billing and delivery addresses are not the same
+
     full_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=30)
 

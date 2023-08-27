@@ -68,6 +68,8 @@
                 </label>
                 {{ user_form.username }}
 
+                <h4 class="mt-5 mb-2">Billing Details</h4>
+                <p class="mb-4 text-muted">This will be your main billing information</p>
                 <label style="margin-bottom: 4px;" class="fs-6">{{ user_form.first_name.label}}
                     <span class="text-muted small">({{ user_form.first_name.help_text }})</span>
                 </label>
@@ -77,8 +79,7 @@
                     <span class="text-muted small">({{ user_form.last_name.help_text }})</span>
                 </label>
                 {{ user_form.last_name }}
-
-                <h4 class="mt-5 mb-3">Delivery Details</h4>
+                
                 <label style="margin-bottom: 4px;" class="fs-6">{{ user_form.phone_number.label}}
                     <span class="text-muted small">({{ user_form.phone_number.help_text }})</span>
                 </label>

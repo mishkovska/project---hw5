@@ -9,38 +9,38 @@ class PaymentForm(forms.ModelForm):
     # Personal Info
     email = forms.EmailField(
         label='Email', max_length=100, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter an email', 'id': 'email'}))
+            attrs={'class': 'form-control', 'id': 'email'}))
     
     first_name = forms.CharField(
         label='Firstname', min_length=4, max_length=50, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your firstname', 'id': 'firstname'}))
+            attrs={'class': 'form-control', 'id': 'firstname'}))
     
     last_name = forms.CharField(
         label='Lastname', min_length=4, max_length=50, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your lastname', 'id': 'lastname'}))
+            attrs={'class': 'form-control', 'id': 'lastname'}))
     
     # Delivery details
     phone_number = forms.CharField(
         label='Phone Number', min_length=3, max_length=30, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your phone number', 'id': 'phone-number', 'type': 'tel'}))
+            attrs={'class': 'form-control', 'id': 'phone-number', 'type': 'tel'}))
     
     country = CountryField()
     
     city = forms.CharField(
         label='City', min_length=1, max_length=150, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter the city you live in', 'id': 'city'}))
+            attrs={'class': 'form-control', 'id': 'city'}))
     
     postcode = forms.CharField(
         label='Postcode', min_length=2, max_length=12, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your postcode', 'id': 'postcode'}))
+            attrs={'class': 'form-control', 'id': 'postcode'}))
     
     address_line_1 = forms.CharField(
         label='Address Line 1', max_length=150, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your street name and civic number', 'id': 'address1'}))
+            attrs={'class': 'form-control', 'id': 'address1'}))
     
     address_line_2 = forms.CharField(
         label='Address Line 2', max_length=150, help_text='Required', widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Enter your apartment number', 'id': 'address2'}))
+            attrs={'class': 'form-control', 'id': 'address2'}))
 
     class Meta:
         model = UserBase
