@@ -30,9 +30,9 @@
                 <h1 class="display-6">New arrivals</h1>
             </div>
             <div>
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for category in categories_new_arrival %}
-                    <div class="col-3">
+                    <div class="col-3 mb-4">
                         <div class="card h-100">
                             <div class="h-60">
                                 <img src="{{ category.image.url }}" class="card-img-top img-fluid" alt="Category Image">

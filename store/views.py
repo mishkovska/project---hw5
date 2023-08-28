@@ -46,7 +46,10 @@ def category_list(request, category_slug):
     descendants = category.get_descendants(include_self=True)
 
     products = Product.products.filter(category__in=descendants)
+    min_price = float('inf')
+    max_price = float('-inf')
 
+    # For Device Type Filter
     root = category.get_root()
     if root.has_phone_type:
         if category.is_root_category():
@@ -58,11 +61,28 @@ def category_list(request, category_slug):
                 descendants = category.get_descendants(include_self=True)
     else:
         descendants = []
+    
+    # For Price Filter Min And Max Price
+    for product in products:
+        price = product.price
+        if price < min_price:
+            min_price = price
+        if price > max_price:
+            max_price = price
+
+    # For Displaying the Category Name Correctly
+    if category.is_root_category():
+        display_name = category.name
+    else:
+        display_name = category.name + ' ' + root.name
 
     context = {
         'category': category,
         'products': products,
-        'descendants': descendants
+        'descendants': descendants,
+        'min_price': min_price,
+        'max_price': max_price,
+        'display_name': display_name,
     }
 
     return render(request, 'store/products/category.html', context)

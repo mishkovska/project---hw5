@@ -8,12 +8,17 @@
             <h1 class="h2">Your Dashboard</h1>
         </div>
         <div class="col-12 d-flex justify-content-between">
+            {% if user.is_superuser %}
+            <div>You are logged in with the username: <b>{{ user }}</b>. This is a <b>superuser</b> account.</div>
+            {% else %}
             <div>Manage your <b>orders</b> and personal details</div>
             <div><a href="{% url "account:edit_details" %}">Change Details</a></div>
+            {% endif %}
         </div>
         <hr/>
     </div>
     <div class="container" style="max-width: 1000px">
+        {% if not user.is_superuser %}
         {% for order in orders %}
             <div class="col-12 bg-light p-3 d-flex mb-3">
                 <div class="flex-grow-1 d-flex">
@@ -74,6 +79,7 @@
 
             </div>
         {% endfor %}
+        {% endif %}
     </div>
 </main>
 {% endblock %}
