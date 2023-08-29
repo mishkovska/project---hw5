@@ -147,7 +147,7 @@ EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
 
 # Stripe Payment
-PUBLISHABLE_KEY = os.environ.get('PUBLISHABLE_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
 # stripe listen --forward-to localhost:8000/payment/webhook/
