@@ -1,4 +1,4 @@
-var stripe = Stripe('pk_test_51NdwzECloRCyzDNGjMMn4YcCPrui42DNxUjsgbCcdefWm66ygk40YUcr5Wat8Gu9aOFmcmUqrsthqvX2OKEdRyg9009tSaGcJl');
+var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 var submitButton = document.getElementById('submit');
 clientSecret = submitButton.getAttribute('data-secret');

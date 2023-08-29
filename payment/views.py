@@ -1,6 +1,7 @@
 import json
 import stripe
 
+from django.conf import settings
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -17,14 +18,15 @@ def BasketView(request):
     basket = Basket(request)
     total = int(str(basket.get_total_price()).replace('.', ''))
 
-    stripe.api_key = 'sk_test_51NdwzECloRCyzDNGuvBbXBqPjibk9RpQ4ezYdqRlQeudnuyRSQnnv4ujcM1ewlJtbZ6iJEUXjtAqDvrfs3qsAbRK00nuWKnuYb'
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     intent = stripe.PaymentIntent.create(
         amount = total,
         currency = 'eur',
         metadata={'userid': request.user.id}
     )
 
-    return render(request, 'store/payment/home.html', {'form': form, 'client_secret': intent.client_secret})
+    return render(request, 'store/payment/home.html', {'form': form, 'client_secret': intent.client_secret,
+                                                       'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY})
 
 @csrf_exempt
 def stripe_webhook(request):
